@@ -1,0 +1,25 @@
+@media (min-width: 768px) {
+    .searchOverPicture {
+        position: absolute;
+        top: 57.5%;
+        left: 1.5%;
+        width: 97%;
+    }
+    .whitespaceUnderPic {
+        margin: 50px;
+    }
+
+}
+@media (max-width: 767px) {
+    .searchOverPicture {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+    }
+
+    .whitespaceUnderPic {
+        margin: 155px;
+    }
+
+}

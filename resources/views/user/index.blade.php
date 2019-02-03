@@ -1,0 +1,58 @@
+@extends('user.layout.app')
+
+@section('content')
+    <div class="card bg-light text-dark">
+        <img class="card-img" src="/storage/picturesWebsite/dogAtWork.jpg" alt="Noch kein Praktikum? Jetzt suchen!">
+        <div class="card-img-overlay">
+            <form action="/search" method="POST">
+                <div class="searchOverPicture">
+                    <div class="row justify-content-center">
+                    <div class="col-md-5">
+                            <input type="search" class="form-control" id="searchJob" placeholder="Was?">
+                        </div>
+                        <div class="col-md-5">
+                            <input type="search" class="form-control" id="searchLocation" placeholder="Wo?">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-success" style="background-color: #057d00; width: 100%">Suche</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="whitespaceUnderPic"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="/lebenslauf">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="/storage/picturesWebsite/lebenslauf.png">
+                    <div class="card-body">
+                        <p class="card-text">Tipps zum Lebenslauf</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/lebenslauf">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="/storage/picturesWebsite/lebenslauf.png">
+                    <div class="card-body">
+                        <p class="card-text">Tipps zum Lebenslauf</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="/lebenslauf">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top" src="/storage/picturesWebsite/lebenslauf.png">
+                    <div class="card-body">
+                        <p class="card-text">Tipps zum Lebenslauf</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+@endsection
