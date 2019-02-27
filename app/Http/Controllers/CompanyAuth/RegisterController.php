@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CompanyAuth;
 
 use App\Company;
+use App\District;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -66,6 +67,9 @@ class RegisterController extends Controller
         return Company::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'street' => $data['street'],
+            'plz' => $data['plz'],
+            'district_id' => $data['district'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -77,7 +81,11 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('company.auth.register');
+        $districts = District::all();
+
+        return view('company.auth.register', [
+            'districts' => $districts
+        ]);
     }
 
     /**

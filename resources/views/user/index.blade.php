@@ -7,11 +7,21 @@
             <form action="/search" method="POST">
                 <div class="searchOverPicture">
                     <div class="row justify-content-center">
-                    <div class="col-md-5">
-                            <input type="search" class="form-control" id="searchJob" placeholder="Was?">
+                        <div class="col-md-5">
+                            <select name="what" id="what" class="form-control selectpicker" data-live-search="true"
+                                    data-title="Was?" data-style="bg-white border" data-width="100%">
+                               @foreach($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                               @endforeach
+                            </select>
                         </div>
                         <div class="col-md-5">
-                            <input type="search" class="form-control" id="searchLocation" placeholder="Wo?">
+                            <select name="where" id="where" class="form-control selectpicker" data-live-search="true"
+                                    data-title="Wo?" data-style="bg-white border" data-width="100%">
+                                @foreach($districts as $district)
+                                    <option value="{{ $district->id }}">{{ $district->district }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-success" style="background-color: #057d00; width: 100%">Suche</button>
