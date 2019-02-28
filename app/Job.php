@@ -23,6 +23,6 @@ class Job extends Model
 
     public function district ()
     {
-        return $this::company()->find(1)->district();
+        return $this::company()->district();
     }
 }

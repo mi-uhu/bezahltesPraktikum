@@ -15,7 +15,8 @@
 
 //User
 Route::group([], function () {
-    Route::get('/', 'SearchController@index')->name('indexUser');
+    Route::get('/', 'IndexController@index')->name('indexUser');
+    Route::get('/jobs', 'IndexController@jobs')->name('jobsUser');
 
     Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('loginUser');
     Route::post('/login', 'UserAuth\LoginController@login');

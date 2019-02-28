@@ -38,7 +38,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="home">Home</a>
+                            <a class="dropdown-item" href="/company/home">Home</a>
                             <a class="dropdown-item" href="{{ route('logoutCompany') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

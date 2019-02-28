@@ -8,14 +8,15 @@ function printJobDescription($description)
 }
 
 ?>
-@extends('company.layout.app')
+
+@extends('user.layout.app')
 
 @section('content')
 
     @if(isset($jobs))
         <ul class="list-unstyled">
             @foreach($jobs as $job)
-                <a href="/company/jobs/{{ $job->id }}">
+                <a href="/jobs/{{ $job->id }}">
                     <li class="media">
                         @if($job->logo != "noimage.jpg")
                             <img class="mr-3 jobLogo" src="/storage/logos/{{ $job->logo }}"
@@ -23,14 +24,14 @@ function printJobDescription($description)
                         @endif
                         <div class="media-body">
                             <h4 class="mt-0 mb-1">{{ $job->title }}</h4>
-                            {!! printJobDescription($job->description) !!}
+                            {!! printJobDescription( $job->description ) !!}
                         </div>
                     </li>
                 </a>
                 <br>
             @endforeach
         </ul>
-        {{ $jobs->links() }}
+
     @else
         <h1>Sie haben noch keine Inserate erstellt.</h1>
     @endif
