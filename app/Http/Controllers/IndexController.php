@@ -25,10 +25,11 @@ class IndexController extends Controller
 
     public function jobs()
     {
-        $jobs = Job::OrderBy('id', 'desc')->get();
+        $jobs = Job::OrderBy('id', 'desc')->paginate(20);
 
         return view('user.jobs', [
             'jobs' => $jobs
         ]);
     }
+
 }

@@ -1,13 +1,3 @@
-<?php
-function printJobDescription($description)
-{
-    if (strlen($description) > 350) {
-        $description = substr($description, 0, 300) . "...";
-    }
-    return $description;
-}
-
-?>
 @extends('company.layout.app')
 
 @section('content')
@@ -23,7 +13,7 @@ function printJobDescription($description)
                         @endif
                         <div class="media-body">
                             <h4 class="mt-0 mb-1">{{ $job->title }}</h4>
-                            {!! printJobDescription($job->description) !!}
+                            {!! \App\Job::getShortJobDescription($job->description) !!}
                         </div>
                     </li>
                 </a>

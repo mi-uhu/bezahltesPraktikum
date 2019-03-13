@@ -11,13 +11,13 @@
 |
 */
 
+Route::get('/', 'IndexController@index')->name('indexUser');
+Route::get('/jobs', 'IndexController@jobs')->name('jobsUser');
+Route::post('/search', 'SearchController@search')->name('search');
 
 
 //User
 Route::group([], function () {
-    Route::get('/', 'IndexController@index')->name('indexUser');
-    Route::get('/jobs', 'IndexController@jobs')->name('jobsUser');
-
     Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('loginUser');
     Route::post('/login', 'UserAuth\LoginController@login');
     Route::post('/logout', 'UserAuth\LoginController@logout')->name('logoutUser');

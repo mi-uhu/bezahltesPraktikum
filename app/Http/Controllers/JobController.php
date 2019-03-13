@@ -47,7 +47,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $attributes = request()->validate([
+        request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'description' => ['required', 'min:20'],
             'logo' => 'nullable|image|max:2048',
@@ -61,7 +61,7 @@ class JobController extends Controller
             $logoExtension = $request->file('logo')->getClientOriginalExtension();
             $logoFilenameToStore = $logoFilename . '_' . time() . '.' . $logoExtension;
 
-            $logoPath = $request->file('logo')->storeAs('public/logos', $logoFilenameToStore);
+            $request->file('logo')->storeAs('public/logos', $logoFilenameToStore);
         }
         else $logoFilenameToStore = "noimage.jpg";
 
@@ -72,7 +72,7 @@ class JobController extends Controller
             $titlePictureExtension = $request->file('titlePicture')->getClientOriginalExtension();
             $titlePictureFilenameToStore = $titlePictureFilename . '_' . time() . '.' . $titlePictureExtension;
 
-            $titlePicturePath = $request->file('titlePicture')->storeAs('public/titlePictures', $titlePictureFilenameToStore);
+            $request->file('titlePicture')->storeAs('public/titlePictures', $titlePictureFilenameToStore);
         }
         else $titlePictureFilenameToStore = "noimage.jpg";
 

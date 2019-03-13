@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function searchAgent ()
+    public function searchAgents ()
     {
         return $this->hasMany('App\SearchAgent');
     }
 
-    public function job ()
+    public function jobs ()
     {
         return $this->belongsToMany('App\Job');
     }

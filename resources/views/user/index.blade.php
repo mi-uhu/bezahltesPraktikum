@@ -4,7 +4,8 @@
     <div class="card bg-light text-dark">
         <img class="card-img" src="/storage/picturesWebsite/dogAtWork.jpg" alt="Noch kein Praktikum? Jetzt suchen!">
         <div class="card-img-overlay">
-            <form action="/search" method="POST">
+            <form method="POST" action="/search" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="searchOverPicture">
                     <div class="row justify-content-center">
                         <div class="col-md-5">
