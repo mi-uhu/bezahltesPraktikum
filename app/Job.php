@@ -30,7 +30,7 @@ class Job extends Model
     {
         if (strlen($description) > 350) {
             $description = substr($description, 0, 300);
-            $description = substr($description, 0, strrpos($description, ' ')) . " ...";
+            $description = substr($description, 0, strrpos($description, ' ')) . "...";
         }
         return $description;
     }
