@@ -17,6 +17,7 @@ class CompaniesTableSeeder extends Seeder
             'password' => Hash::make('muster'),
             'district_id' => 21,
             'street' => 'Musterstraße 1',
+            'city' => 'Graz',
             'plz' => 8041,
 
         ]);

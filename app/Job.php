@@ -29,7 +29,7 @@ class Job extends Model
     public static function getShortJobDescription( $description )
     {
         if (strlen($description) > 350) {
-            $description = substr($description, 0, 300);
+            $description = substr($description, 0, 350);
             $description = substr($description, 0, strrpos($description, ' ')) . "...";
         }
         return $description;

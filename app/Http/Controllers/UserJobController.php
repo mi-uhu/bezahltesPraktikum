@@ -4,10 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Job;
 
 
-class SearchController extends Controller
+class UserJobController extends Controller
 {
+    public function index()
+    {
+        $jobs = Job::OrderBy('id', 'desc')->paginate(20);
+
+        return view('user.jobs', [
+            'jobs' => $jobs
+        ]);
+    }
+
+    public function show(Job $job)
+    {
+        $company = $job->company()->first();
+
+        return view('user.job.show', [
+            'job' => $job,
+            'company' => $company,
+        ]);
+    }
+
     public function search(Request $request)
     {
         $jobs = DB::table('jobs')
@@ -31,4 +51,5 @@ class SearchController extends Controller
             'jobs' => $jobs,
         ]);
     }
+
 }

@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('password');
             $table->text('street');
             $table->integer('plz');
+            $table->text('city');
 
             $table->unsignedInteger('district_id');
             $table->foreign('district_id')->references('id')->on('districts');

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if(isset($jobs))
+    @if(sizeof($jobs) > 0)
         <ul class="list-unstyled">
             @foreach($jobs as $job)
                 <a href="/jobs/{{ $job->id }}">
@@ -22,7 +22,7 @@
         </ul>
         {{ $jobs->links() }}
     @else
-        <h1>Sie haben noch keine Inserate erstellt.</h1>
+        <h3>Es sind keine eine Inserate mit den gewünschten Kriterien vorhanden.</h3>
     @endif
 
 @endsection

@@ -53,6 +53,12 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                        <label for="city" class="control-label">Ort</label>
+                        <input id="city" type="text" class="form-control border" name="city"
+                               value="{{ old('city') }}">
+                    </div>
+
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="password" class="control-label">Passwort</label>
                         <input id="password" type="password" class="form-control border" name="password">
