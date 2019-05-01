@@ -39,12 +39,12 @@ class User extends Authenticatable
         $this->notify(new UserResetPassword($token));
     }
 
-    public function searchAgent ()
+    public function searchAgents ()
     {
         return $this->hasMany('App\SearchAgent');
     }
 
-    public function favourite ()
+    public function favourites ()
     {
         return $this->hasMany('App\Favourite');
     }

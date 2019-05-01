@@ -2,7 +2,6 @@
 
 @section('content')
 
-    <br>
     <div class="row justify-content-center">
         <div class="col-md-9">
             <li class="media">
@@ -18,7 +17,24 @@
 
         </div>
         <div class="col-md-3">
+
             <h2>Anschrift</h2>
+            {{--{{ $company->name }}<br>--}}
+            {{ $company->street }}<br>
+            {{ $company->plz }}, {{ $company->city }}<br>
+            <a href="mailto:{{ $company->email }}">{{ $company->email }}</a>
+
+            <br><br>
+
+            <h2>Tags</h2>
+            <ul>
+                @foreach($tags as $tag)
+                    <li>{{ $tag->tag }}</li>
+                @endforeach
+            </ul>
+
+            <br>
+
         </div>
     </div>
 

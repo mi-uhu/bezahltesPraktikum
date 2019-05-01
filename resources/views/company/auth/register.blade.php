@@ -70,8 +70,13 @@
                                name="password_confirmation">
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="background-color: #062265;">Registrieren</button>
-
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary" style="background-color: #062265; width: 100%">Registrieren</button>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
                 </form>
 
             </div>

@@ -17,7 +17,7 @@
                     <a class="nav-link" href="/jobs">Praktika</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/tips">Tips</a>
+                    <a class="nav-link" href="#">Tips</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/company">Für Arbeitgeber</a>
@@ -41,7 +41,8 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="home">Home</a>
+                            <a class="dropdown-item" href="/home">Home</a>
+                            <a class="dropdown-item" href="/favourites">Merkliste</a>
                             <a class="dropdown-item" href="{{ route('logoutUser') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

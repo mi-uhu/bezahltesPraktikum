@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             DistrictsTableSeeder::class,
             UsersTableSeeder::class,
             CompaniesTableSeeder::class,
+            TagsTableSeeder::class,
         ]);
     }
 }

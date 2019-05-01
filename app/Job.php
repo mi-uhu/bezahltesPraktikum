@@ -16,7 +16,7 @@ class Job extends Model
         return $this->hasMany('App\Favourite');
     }
 
-    public function tag ()
+    public function tags ()
     {
         return $this->belongsToMany('App\Tag');
     }

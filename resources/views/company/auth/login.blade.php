@@ -29,23 +29,30 @@
                             <label class="custom-control-label"  for="customCheck">Eingeloggt bleiben</label>
                         </div>
                     </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-primary" style="background-color: #062265; width: 100%">
+                                Login
+                            </button>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <a class="btn btn-link" href="{{ url('/company/password/reset') }}">
+                                Passwort vergessen?
+                            </a>
+                        </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" style="background-color: #062265;">
-                            Login
-                        </button>
-
-                        <a class="btn btn-link" href="{{ url('/company/password/reset') }}">
-                            Passwort vergessen?
-                        </a>
+                        <div class="form-group col-md-12">
+                            <a class="btn btn-link" href="{{ url('/company/register') }}">
+                                Noch kein Konto? Jetzt Registrieren!
+                            </a>
+                        </div>
                     </div>
+
                     @if(session('url'))
                         <input id="url" name="url" type="hidden" value="{{ session('url') }}">
                     @endif
                 </form>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 @endsection

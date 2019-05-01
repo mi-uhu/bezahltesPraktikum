@@ -13,18 +13,29 @@ class UserJobController extends Controller
     {
         $jobs = Job::OrderBy('id', 'desc')->paginate(20);
 
-        return view('user.jobs', [
-            'jobs' => $jobs
+        return view('user.job.index', [
+            'jobs' => $jobs,
+            'emptyMessage' => '<h3>Es sind noch keine Praktika inseriert.</h3>',
         ]);
     }
 
     public function show(Job $job)
     {
         $company = $job->company()->first();
+        $tags = $job->tags()->get();
+        $favourite = null;
+
+        $user = auth()->guard('user')->user();
+        if( isset($user) )
+        {
+            $favourite = $job->favourite()->where('user_id', '=', $user->id )->first();
+        }
 
         return view('user.job.show', [
             'job' => $job,
             'company' => $company,
+            'tags' => $tags,
+            'favourite' => $favourite,
         ]);
     }
 
@@ -47,8 +58,11 @@ class UserJobController extends Controller
             ->orderBy('jobs.id', 'desc')
             ->paginate(20);
 
-        return view('user.search', [
+        return view('user.job.index', [
             'jobs' => $jobs,
+            'title' => 'Suchergebnisse:',
+            'emptyMessage' => '<h3>Keine Suchergebnisse mit den gewünschten Kriterien gefunden.
+                               <br>Bitte verwende andere Suchkriterien oder schau später wieder vorbei.</h3>',
         ]);
     }
 

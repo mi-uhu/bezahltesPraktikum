@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Favourite;
+use App\User;
+use App\Job;
 use Illuminate\Http\Request;
 
 class FavouriteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('user');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,16 @@ class FavouriteController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find( auth()->guard('user')->user()->id );
+        $favourites = $user->favourites()->select('job_id')->get();
+        $jobs = Job::whereIn('id', $favourites )->latest()->paginate(20);
+
+        return view('user.job.index', [
+            'jobs' => $jobs,
+            'title' => 'Merkliste',
+            'emptyMessage' => '<h3>Du hast noch keine Inserate auf die Merkliste gesetzt. 
+                               <br>Um eines auf die List zu setzen, klicke einfach auf "Auf die Merkliste!". </h3>',
+        ]);
     }
 
     /**
@@ -35,7 +50,12 @@ class FavouriteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $favourite = new Favourite();
+        $favourite->job_id = $request->jobId;
+        $favourite->user_id = auth()->guard('user')->user()->id;
+        $favourite->save();
+
+        return redirect()->route('jobs.show', ['id' => $request->jobId]);
     }
 
     /**
@@ -45,8 +65,8 @@ class FavouriteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Favourite $favourite)
-    {
-        //
+    {        dd('Hello');
+
     }
 
     /**
@@ -80,6 +100,8 @@ class FavouriteController extends Controller
      */
     public function destroy(Favourite $favourite)
     {
-        //
+        $job = $favourite->job()->first();
+        $favourite->delete();
+        return redirect()->route('jobs.show', ['id' => $job->id]);
     }
 }

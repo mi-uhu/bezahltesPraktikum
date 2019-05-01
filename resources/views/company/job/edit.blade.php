@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Neues Inserat erstellen</h1>
+    <h1>Inserat Bearbeiten:</h1>
 
     <form method="POST" action="/company/jobs" enctype="multipart/form-data">
         {{ csrf_field() }}

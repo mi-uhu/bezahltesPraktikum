@@ -19,6 +19,7 @@ Route::group([], function () {
     Route::post('/search', 'UserJobController@search')->name('search');
 
     Route::resource('jobs', 'UserJobController');
+    Route::resource('favourites', 'FavouriteController');
 
     Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('loginUser');
     Route::post('/login', 'UserAuth\LoginController@login');
@@ -35,7 +36,7 @@ Route::group([], function () {
 
 //Company
 Route::group(['prefix' => 'company'], function () {
-    Route::resource('jobs', 'JobController');
+    Route::resource('jobs', 'JobController', ['as' => 'company']);
 
     Route::get('/', function () {return view('company.index');})->name('indexCompany');
     Route::get('/login', 'CompanyAuth\LoginController@showLoginForm')->name('loginCompany');

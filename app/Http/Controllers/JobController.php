@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
 use App\Job;
+use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class JobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function __construct()
     {
         $this->middleware('company');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $company = auth()->guard('company')->user();
@@ -36,7 +37,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('company.job.create');
+        $tags = Tag::all();
+        return view('company.job.create', ['tags' => $tags]);
     }
 
     /**
@@ -52,6 +54,9 @@ class JobController extends Controller
             'description' => ['required', 'min:20'],
             'logo' => 'nullable|image|max:2048',
             'titlePicture' => 'nullable|image|max:2048',
+            'tag1' => 'required',
+            'tag2' => 'nullable',
+            'tag3' => 'nullable',
         ]);
 
         if($request->hasFile('logo'))
@@ -83,6 +88,26 @@ class JobController extends Controller
         $job->logo = $logoFilenameToStore;
         $job->titlePicture = $titlePictureFilenameToStore;
         $job->save();
+
+        DB::table('job_tag')->insertGetId(
+            ['job_id' => $job->id, 'tag_id' => $request->tag1]
+        );
+
+        if(isset($request->tag2) && $request->tag2 != -1)
+        {
+            DB::table('job_tag')->insertGetId(
+                ['job_id' => $job->id, 'tag_id' => $request->tag2]
+            );
+        }
+
+        if(isset($request->tag3) && $request->tag3 != -1)
+        {
+            DB::table('job_tag')->insertGetId(
+                ['job_id' => $job->id, 'tag_id' => $request->tag3]
+            );
+        }
+
+        return redirect('/company/jobs');
     }
 
     /**
@@ -93,7 +118,20 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return view('company.job.show', ['job' => $job]);
+        if( $job->company()->first()->id == auth()->guard('company')->user()->id )
+        {
+            $company = $job->company()->first();
+            $tags = $job->tags()->get();
+            return view('company.job.show', [
+                'job' => $job,
+                'company' => $company,
+                'tags' => $tags,
+            ] );
+        }
+        else
+        {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -104,7 +142,21 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        //
+        if( $job->company()->first()->id == auth()->guard('company')->user()->id )
+        {
+            $tags = Tag::all();
+            $setTags = $job->tags()->get();
+
+            return view('company.job.edit', [
+                'tags' => $tags,
+                'job' => $job,
+                'setTags' => $setTags,
+            ] );
+        }
+        else
+        {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -127,6 +179,9 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        //
+        DB::table('job_tag')->where('job_id', '=', $job->id)->delete();
+        $job->delete();
+
+        return redirect()->route('company.jobs.index');
     }
 }

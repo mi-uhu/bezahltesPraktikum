@@ -1,19 +1,12 @@
-<?php
-function printJobDescription($description)
-{
-    if (strlen($description) > 350) {
-        $description = substr($description, 0, 300) . "...";
-    }
-    return $description;
-}
-
-?>
-
 @extends('user.layout.app')
 
 @section('content')
 
-    @if(isset($jobs))
+    @if(sizeof($jobs) > 0)
+        @if( isset($title) )
+            <h1>{!! $title !!}</h1>
+            <br>
+        @endif
         <ul class="list-unstyled">
             @foreach($jobs as $job)
                 <a href="/jobs/{{ $job->id }}">
@@ -23,8 +16,8 @@ function printJobDescription($description)
                                  alt="Generic placeholder image">
                         @endif
                         <div class="media-body">
-                            <h4 class="mt-0 mb-1">{{ $job->title }}</h4>
-                            {!! printJobDescription( $job->description ) !!}
+                            <h3 class="mt-0 mb-1">{{ $job->title }}</h3>
+                            {!! \App\Job::getShortJobDescription($job->description) !!}
                         </div>
                     </li>
                 </a>
@@ -33,7 +26,7 @@ function printJobDescription($description)
         </ul>
         {{ $jobs->links() }}
     @else
-        <h1>Sie haben noch keine Inserate erstellt.</h1>
+        {!! $emptyMessage !!}
     @endif
 
 @endsection
