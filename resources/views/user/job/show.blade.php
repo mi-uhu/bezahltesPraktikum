@@ -3,21 +3,20 @@
 @section('content')
 
     <div class="row justify-content-center">
-        <div class="col-md-9">
-            <li class="media">
-                @if($job->logo != "noimage.jpg")
-                    <img class="mr-3 jobLogo" src="/storage/logos/{{ $job->logo }}"
-                         alt="Generic placeholder image">
-                @endif
-                <div class="media-body">
-                    <h1>{{ $job->title }}</h1>
-                    {!! $job->description !!}
-                </div>
-            </li>
+            <div class="col-md-9">
+                <li class="media">
+                    @if($job->logo != "noimage.jpg")
+                        <img class="mr-3 jobLogo" src="/storage/logos/{{ $job->logo }}"
+                             alt="Generic placeholder image">
+                    @endif
+                    <div class="media-body">
+                        <h1>{{ $job->title }}</h1>
+                        {!! $job->description !!}
+                    </div>
+                </li>
 
-        </div>
+            </div>
         <div class="col-md-3">
-
             <h2>Anschrift</h2>
             {{ $company->name }}<br>
             {{ $company->street }}<br>
@@ -46,18 +45,22 @@
                 @else
                     <form method="POST" action="/favourites" enctype="multipart/form-data">
                         {{ csrf_field() }}
+
                         <input name="jobId" id="jobId" type="hidden" value="{{ $job->id }}"/>
-                        <button class="btn btn-dark" type="submit" style="background: #057d00">Auf die Merkliste!</button>
+                        <button class="btn btn-dark" type="submit" style="background: #057d00">Auf die Merkliste!
+                        </button>
                     </form>
                 @endif
             @else
-                <a href="/login">
-                    <button class="btn btn-dark" style="background: #057d00">Jetzt anmelden!</button>
-                </a>
+                <div>
+                    <h3>Jetzt anmelden um die Merkliste zu nutzen!</h3>
+                </div>
+                <div>
+                    <a href="/login">
+                        <button class="btn btn-dark" style="background: #057d00">Anmelden</button>
+                    </a>
+                </div>
             @endif
-
-
-
         </div>
     </div>
 

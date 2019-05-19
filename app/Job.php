@@ -21,9 +21,9 @@ class Job extends Model
         return $this->belongsToMany('App\Tag');
     }
 
-    public function district ()
+    public function districtId ()
     {
-        return $this::company()->district();
+        return $this::company()->first()->district_id;
     }
 
     public static function getShortJobDescription( $description )

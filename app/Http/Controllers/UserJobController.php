@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\District;
+use App\SearchAgent;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Job;
@@ -12,9 +15,15 @@ class UserJobController extends Controller
     public function index()
     {
         $jobs = Job::OrderBy('id', 'desc')->paginate(20);
+        $tags = Tag::all();
+        $districts = District::all();
+        $showSearchAgent = false;
 
         return view('user.job.index', [
             'jobs' => $jobs,
+            'tags' => $tags,
+            'districts' => $districts,
+            'showSearchAgent' => $showSearchAgent,
             'emptyMessage' => '<h3>Es sind noch keine Praktika inseriert.</h3>',
         ]);
     }
@@ -57,9 +66,28 @@ class UserJobController extends Controller
                 'companies.name as companyName')
             ->orderBy('jobs.id', 'desc')
             ->paginate(20);
+        
+        $tags = Tag::all();
+        $districts = District::all();
+        $selectedTags = Tag::where('id', '=', $request->what)->get();
+        $selectedDistricts = District::where('id', '=', $request->where)->get();
+        $showSearchAgent = false;
+        if( auth()->guard('user')->user() )
+        {
+            $showSearchAgent = !( SearchAgent::where([
+                ['user_id', '=', auth()->guard('user')->user()->id],
+                ['tag_id', '=', $request->what],
+                ['district_id', '=', $request->where],
+            ])->exists() );
+        }
 
         return view('user.job.index', [
             'jobs' => $jobs,
+            'tags' => $tags,
+            'districts' => $districts,
+            'selectedTags' => $selectedTags,
+            'selectedDistricts' => $selectedDistricts,
+            'showSearchAgent' => $showSearchAgent,
             'title' => 'Suchergebnisse:',
             'emptyMessage' => '<h3>Keine Suchergebnisse mit den gewünschten Kriterien gefunden.
                                <br>Bitte verwende andere Suchkriterien oder schau später wieder vorbei.</h3>',

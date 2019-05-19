@@ -18,7 +18,7 @@ class CreateJobsTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('logo');
-            $table->string('titlePicture');
+            //$table->string('titlePicture');
 
             $table->unsignedInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
@@ -37,3 +37,6 @@ class CreateJobsTable extends Migration
         Schema::dropIfExists('jobs');
     }
 }
+
+
+

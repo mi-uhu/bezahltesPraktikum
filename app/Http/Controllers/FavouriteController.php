@@ -26,7 +26,7 @@ class FavouriteController extends Controller
 
         return view('user.job.index', [
             'jobs' => $jobs,
-            'title' => 'Merkliste',
+            'title' => 'Merkliste:',
             'emptyMessage' => '<h3>Du hast noch keine Inserate auf die Merkliste gesetzt. 
                                <br>Um eines auf die List zu setzen, klicke einfach auf "Auf die Merkliste!". </h3>',
         ]);

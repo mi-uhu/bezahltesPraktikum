@@ -33,6 +33,7 @@
 <body>
 <div id="app">
     @include('user.inc.nav')
+    <br><br>
     <main class="py-4">
         <div class="container">
             @include('user.inc.messages')

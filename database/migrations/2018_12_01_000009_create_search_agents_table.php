@@ -22,11 +22,8 @@ class CreateSearchAgentsTable extends Migration
             $table->unsignedInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags');
 
-            $table->unsignedInteger('district_id')->nullable();
+            $table->unsignedInteger('district_id');
             $table->foreign('district_id')->references('id')->on('districts');
-
-            $table->unsignedInteger('state_id')->nullable();
-            $table->foreign('state_id')->references('id')->on('states');
 
             $table->timestamps();
         });

@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 <div class="searchOverPicture">
                     <div class="row justify-content-center">
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <select name="what" id="what" class="form-control selectpicker" data-live-search="true"
                                     data-title="Was?" data-style="bg-white border" data-width="100%">
                                @foreach($tags as $tag)
@@ -16,7 +16,7 @@
                                @endforeach
                             </select>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <select name="where" id="where" class="form-control selectpicker" data-live-search="true"
                                     data-title="Wo?" data-style="bg-white border" data-width="100%">
                                 @foreach($districts as $district)

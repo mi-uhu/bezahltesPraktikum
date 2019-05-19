@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Types\Integer;
 
 class Tag extends Model
 {
@@ -17,10 +16,15 @@ class Tag extends Model
         return $this->belongsToMany('App\Job');
     }
 
+    public static function getNameFromId( int $id )
+    {
+        return Tag::where('id', '=', $id)->first()->tag;
+    }
+
     public static function isTagPreselected( $selectedTags, Tag $tag, int $tagNr)
     {
         if( $selectedTags == null ||
-            sizeof($selectedTags) > $tagNr ||
+            sizeof($selectedTags) < $tagNr ||
             $selectedTags[$tagNr - 1]->id != $tag->id )
         {
             return false;

@@ -20,6 +20,7 @@ Route::group([], function () {
 
     Route::resource('jobs', 'UserJobController');
     Route::resource('favourites', 'FavouriteController');
+    Route::resource('searchagents', 'SearchAgentController');
 
     Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('loginUser');
     Route::post('/login', 'UserAuth\LoginController@login');

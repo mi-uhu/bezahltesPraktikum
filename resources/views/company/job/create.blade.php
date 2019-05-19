@@ -50,14 +50,14 @@
         </div>
         <br>
         <div class="row justify-content-center">
-            <div class="col-md-5">
+            <div class="col-md-10">
                 <label for="logo" class="col-form-label">Firmenlogo (nicht verpflichtend)</label>
                 <input name="logo" class="form-control-file" type="file" value="{{ old('logo') }}">
             </div>
-            <div class="col-md-5">
-                <label for="titlePicture" class="col-form-label">Titelbild (nicht verpflichtend)</label>
-                <input name="titlePicture" class="form-control-file" type="file" value="{{ old('titlePicture') }}">
-            </div>
+            {{--<div class="col-md-5">--}}
+                {{--<label for="titlePicture" class="col-form-label">Titelbild (nicht verpflichtend)</label>--}}
+                {{--<input name="titlePicture" class="form-control-file" type="file" value="{{ old('titlePicture') }}">--}}
+            {{--</div>--}}
             <div class="col-md-2">
                 <br>
                 <button class="btn btn-dark" type="submit" style="width: 100%; background: #062265">Speichern</button>

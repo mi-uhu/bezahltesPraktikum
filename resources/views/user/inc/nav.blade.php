@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #057d00;">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #057d00;">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'bezahltesPraktikum') }}
@@ -41,8 +41,8 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/home">Home</a>
                             <a class="dropdown-item" href="/favourites">Merkliste</a>
+                            <a class="dropdown-item" href="/searchagents">Suchagenten</a>
                             <a class="dropdown-item" href="{{ route('logoutUser') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -59,3 +59,5 @@
         </div>
     </div>
 </nav>
+
+
